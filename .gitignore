@@ -2,3 +2,4 @@ burp/pkg/*
 burp/keys/*
 certbot/letsencrypt/*
 certbot/logs/*
+.init_has_been_run
