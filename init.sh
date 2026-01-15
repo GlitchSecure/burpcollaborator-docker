@@ -42,6 +42,11 @@ if [ -e ./init.sh_has_been_run ]; then
     exit 0
 fi
 
+if [ -e ./.init_has_been_run ]; then
+    echo "Script has already been run. Bailing out."
+    exit 0
+fi
+
 check_file "burp.jar"
 check_command "docker"
 check_command "bc"
@@ -87,8 +92,7 @@ read -p "Press any key to continue, or CTRL-C to bail out" var_p
     
     # run the burp container
     ./burp/run.sh
-    sudo /bin/mv ./init.sh ./init.sh_has_been_run
-    sudo /bin/chmod 000 ./init.sh_has_been_run
+    echo 1 > ./.init_has_been_run
     
     # replace placeholders in renewal script
     sudo /bin/sed -i "s/__DOMAIN__/$DOMAIN/g" ./certbot/certificaterenewal.sh
