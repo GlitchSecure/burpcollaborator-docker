@@ -18,6 +18,8 @@ CERTDATE=`/bin/date -d "$CERTIFICATE" +%s`
 
 DAYS=`/bin/echo \($CERTDATE - $CURRENT\)/60/60/24 | /usr/bin/bc`
 
+echo "Certificate renewal job started at $(date) as user $(whoami)"
+
 if [ $DAYS -lt $RENEWDAYS  ]; then
 
 echo Renewing certificate...
