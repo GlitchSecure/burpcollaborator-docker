@@ -43,7 +43,7 @@ if [ -e ./init.sh_has_been_run ]; then
 fi
 
 if [ -e ./.init_has_been_run ]; then
-    echo "Script has already been rn. Bailing out."
+    echo "Script has already been run. Bailing out."
     exit 0
 fi
 
