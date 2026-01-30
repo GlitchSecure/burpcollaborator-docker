@@ -2,15 +2,13 @@
 
 # Renew certificates every X days
 #
-# requires openssl and bc
+# requires openssl, bc, and jq (and realpath & dirname, part of GNU coreutils)
 #
 
 RENEWDAYS=30
 
-BASEDIR=__BASEDIR__
-
-
-DOMAIN=__DOMAIN__
+BASEDIR=$(realpath -m "$(dirname "$0")/..")
+DOMAIN=$(jq -r '.serverDomain' < $BASEDIR/burp/conf/burp.config)
 
 CURRENT=`/bin/date +%s`
 CERTIFICATE=`/usr/bin/openssl x509 -noout -dates -in $BASEDIR/certbot/letsencrypt/live/$DOMAIN/cert.pem  | /bin/grep notAfter | /usr/bin/cut -d "=" -f 2`
