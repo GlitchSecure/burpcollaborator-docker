@@ -131,6 +131,31 @@ ufw route allow proto tcp from your_whitelisted_ip to your_containers_local_ip p
 
 You should be good to go and have your UFW locked down!
 
+## Returning static web content
+
+Sometimes you might want to return some static HTML content when someone navigates to your instance IP or domain. For example, you may want to return some kind of notice if someone sees your IP in audit logs and tries to investigate what it is or who it's coming from.
+
+You can configure Burp to return static HTML content by adding this section in your `./burp/conf/burp.config` file:
+
+```
+{
+    ...
+
+    "customHttpContent": [
+        {
+            "path": "/",
+            "contentType": "text/html",
+            "base64Content": "<insert base64 encoded HTML>"
+        }
+    ],
+
+    ...
+
+}
+```
+
+You'll need to write raw HTML that can be rendered by a browser, then base64 encode the contents and insert it in the `base64Content` field above.
+
 ---
 **Author:** [Bruno Morisson](https://twitter.com/morisson)
 
