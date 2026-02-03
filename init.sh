@@ -95,10 +95,6 @@ read -p "Press any key to continue, or CTRL-C to bail out" var_p
     # run the burp container
     ./burp/run.sh
     echo 1 > ./.init_has_been_run
-    
-    # replace placeholders in renewal script
-    sudo /bin/sed -i "s/__DOMAIN__/$DOMAIN/g" ./certbot/certificaterenewal.sh
-    sudo /bin/sed -i "s#__BASEDIR__#$PWD#g" ./certbot/certificaterenewal.sh
 } || {
     echo "An error occurred during the execution of the script. Please check the output for details."
     exit 1
