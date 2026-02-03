@@ -69,7 +69,7 @@ If everything is OK, burp will start with the following message:
 You can check by running ```docker ps```, and going to burp, and pointing the collaborator configuration to your new server. 
 Keep it mind that this configuration configures the *polling server on port 9443*.
 
-The init.sh script will be renamed and disabled, so no accidents may happen.
+The init.sh script produces a flag file to mark that it has already been run which prevents the script from re-executing and overwriting data, ensuring no accidents happen.
 
 ## Certificate renewal
 
