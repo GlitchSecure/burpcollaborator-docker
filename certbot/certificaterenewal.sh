@@ -32,7 +32,7 @@ docker rm burp
 cd "$BASEDIR"
 "$BASEDIR"/certbot/renew.sh "$DOMAIN"  && \
 /bin/cp -r -f -L "$BASEDIR"/certbot/letsencrypt/live/"$DOMAIN"/* "$BASEDIR"/burp/keys && \
-chown lxd:docker "$BASEDIR"/burp/keys/privkey.pem && \
+chown 999:999 "$BASEDIR"/burp/keys/privkey.pem && \
 "$BASEDIR"/burp/run.sh && \
 echo Certificate renewed
 
